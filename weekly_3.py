@@ -2,12 +2,13 @@ num_1 = int(input())
 dic = [input().lower() for i in range(num_1)]  
 
 num_2 = int(input())
-values =[input() for j in range(num_2)]
+values = ' '.join([input() for j in range(num_2)]).strip().split(' ')
 
 ans = set()
 
-for w in range(len(values)):
-    if values[w].lower() not in dic:
-        ans.add(values[w])
+for k in values:
+    a = k.lower()
+    if a not in dic:
+        ans.add(k)
 
-print(k + '\n' for k in ans)
+print('\n'.join([k for k in ans]))
