@@ -1,18 +1,19 @@
 with open('dataset_3380_5 (1).txt') as f:
-    p = []
-    d = {}
-    for l in f:
-        p.append(l.strip('\n').split('\t'))
-    print(p)
-    for y in p:
-        y[0] = int(y[0])
-        y[2] = int(y[2])
-    print(p)
-    for c in p:
-        if int(c[0]) in d:
-            d[c[0]].append(c[2])
-        else:
-            d[c[0]] = [c[2]]
+    s = list(f)
+    
+for i in range(len(s)):
+    s[i] = s[i].strip().split('\t')
 
-    for k in sorted(d.keys()):
-        print(k, '', sum(d[k]) / float(len(d[k])))
+d = {a:[] for a in range(1, 12)}
+
+for i in range(len(s)):
+    if int(s[i][0]) in d: 
+        d[float(s[i][0])].append(float(s[i][2]))
+
+print(d)
+
+for j in range(1,12):
+    if d[j]:
+        print(j, sum(d[j])/len(d[j]))   
+    else:
+        print(j, '-')
