@@ -29,9 +29,11 @@ for j in range(i):
     foo, namespace, variable = (str(k) for k in input().split())
     if foo == 'create':
         create(namespace, variable)
+       # print(children, var_names)
     elif foo == 'add':
         add(namespace, variable)
+       # print(children, var_names)
     elif foo == 'get':
-        print(get(namespace, variable))
+       print(get(namespace, variable))
     else:
         print('Недопустимое имя функции')    
