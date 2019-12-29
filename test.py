@@ -1,37 +1,34 @@
-children = {'global': 'None'}
-var_names ={'global': []}
+import random
 
-def create (namespace, parent):
-    if namespace not in children:
-        children[namespace] = ''
-        children[namespace] += parent
-    if namespace not in var_names:
-        var_names[namespace] = []
+class Warrior:
+    hp = 100
+    dmg = 20
 
-def add(namespace, variable):
-    if variable not in var_names[namespace]:
-        var_names[namespace].append(variable)
-    
-def get(namespace, variable):
-    if variable in var_names[namespace]:
-        return namespace
-    elif children.get(namespace) == 'None':
-        return None
-    elif variable in str(var_names.items()):
-        return get(children.get(namespace), variable)
+    def hit(self, enemy):
+        if enemy.hp > 0:
+            enemy.hp -= self.dmg
+            print("-20, Left:", enemy.hp)
+        else:
+            print('Кто-то пукнул')
+
+
+Anya = Warrior()
+Lesha = Warrior()
+
+while Anya.hp > 0 or Lesha.hp > 0:
+    kek = random.random()
+    if kek > 0.5:
+        print('Ударили Лешу')
+        Anya.hit(Lesha)
+        continue
     else:
-        return None
-    
+        print('Ударили Аню')
+        Lesha.hit(Anya)
+        continue
 
-i = int(input())
-
-for j in range(i):
-    foo, namespace, variable = (str(k) for k in input().split())
-    if foo == 'create':
-        create(namespace, variable)
-    elif foo == 'add':
-        add(namespace, variable)
-    elif foo == 'get':
-        print(get(namespace, variable))
+    if Anya.hp == 0:
+        print("Lesha wins, Anya has died")
+        break
     else:
-        print('Недопустимое имя функции')    
+        print("Anya wins, Lesha has died")
+        break
