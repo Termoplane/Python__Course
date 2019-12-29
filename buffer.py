@@ -1,9 +1,8 @@
 class Buffer:
     def __init__(self):
-        pass
+        self.buf = []
 
     def add(self, *a):
-        self.buf = []
         for i in a:
             self.buf.append(i)
             if len(self.buf) == 5:
