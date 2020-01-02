@@ -1,36 +1,40 @@
-import sys
-sys.stdin = open("input.txt", "r")
+classes = {}
+
+def add_class(classes, class_name, parents):
+    if class_name not in classes:
+        classes[class_name] = []
+    classes[class_name].extend(parents)
+    for parent in parents:
+        if parent not in classes:
+            classes[parent] = []
+
+def found_path(classes, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+    if start not in classes:
+        return None
+    for node in classes[start]:
+        if node not in path:
+            newpath = found_path(classes, node, end, path)
+            if newpath: return newpath
+    return None
+
+def answer(classes, parent, child):
+    if not(parent or child) in classes or not found_path(classes, child, parent):
+        return 'No'
+    return 'Yes'
 
 n = int(input())
-graph = {}
+for _ in range(n):
+    class_description = input().split()
+    class_name = class_description[0]
+    class_parents = class_description[2:]
+    add_class(classes, class_name, class_parents)
 
-for j in range(n):
-    inp = input().split(' ')
-    graph[inp[0]] = [inp[0]]
-    if ':' in inp:
-        inp.remove(':')
-    for j in inp[1:]:
-        graph[inp[0]].append(j)
-
-def graph_measurer(a, b):
-    global graph
-    if a in graph and b in graph:
-        for i in range(len(graph[b])):
-            while a not in graph[b]:
-                return graph_measurer(a, graph[b][i])
-            return False
-
-req_number = int(input())
-
-for i in range(req_number):
-    inp = input().split()
-    if len(inp) == 2:
-        if inp[0] == inp[1]:
-            print('Yes')
-            continue
-        if graph_measurer(inp[0], inp[1]) == True:
-            print('Yes')
-        else:
-            print('No')
-    else:
-        print('No')
+q = int(input())
+for _ in range(q):
+    question = input().split()
+    parent = question[0]
+    child = question[1]
+    print(answer(classes, parent, child))
