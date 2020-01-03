@@ -16,7 +16,7 @@ def graph_measurer(a, b):
         if graph_measurer(a, p):
             return True
 
-    return False 
+    return False  
         
 
 req_number = int(input())
