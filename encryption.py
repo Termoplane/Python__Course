@@ -10,4 +10,4 @@ for p in passes.split():
     except DecryptionException:
         pass
     else:
-        print(p, s)
+        print(p, '\n', s)
