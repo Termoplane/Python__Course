@@ -15,5 +15,7 @@ class MyList(list):
     def __iter__(self):
         return DoubleElementListIterator(self)
 
-for x in MyList([1,2,3,4]):
-    print(x)
+i = [1,2,3]
+x = DoubleElementListIterator(i)
+next(x)
+next(x)
