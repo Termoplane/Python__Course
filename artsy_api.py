@@ -17,11 +17,11 @@ token = r.json()["token"]
 # создаем заголовок, содержащий наш токен
 headers = {"X-Xapp-Token" : token}
 
-with open('dataset_24476_4 (6).txt', 'r') as f:
+with open('dataset_24476_4.txt', 'r') as f:
     id_s = f.read().split()
     for id in id_s:
         # инициируем запрос с заголовком
         res = requests.get(f"https://api.artsy.net/api/artists/{id}", headers=headers)
         res.encoding = 'utf-8'
 
-        print(res.json()['sortable_name'])
+        print(res.json()['name'], res.json()['nationality'])
