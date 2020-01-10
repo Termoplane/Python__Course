@@ -1,7 +1,7 @@
 import sys
 import re
 
-template = r".*\bcat.*"
+template = r""
 
 for line in sys.stdin:
     line = line.rstrip()
